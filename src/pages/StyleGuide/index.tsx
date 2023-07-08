@@ -3,6 +3,7 @@ import { Input } from "@/components/ui/input";
 import {
   ArrowLeft,
   ArrowRight,
+  Clock,
   Heart,
   ImagePlus,
   ListOrdered,
@@ -15,11 +16,12 @@ import { MessageSquare } from "lucide-react";
 import { Phone } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useCallback } from "react";
+import { Card } from "@/components/ui/card";
+import { Flame } from "lucide-react";
 
 const StyleGuide = () => {
-  const handleOnSubmit = useCallback((e: any) => {
+  const handleOnSubmit = useCallback((e: React.SyntheticEvent) => {
     e.preventDefault();
-    console.log("hello---");
     return;
   }, []);
 
@@ -58,18 +60,31 @@ const StyleGuide = () => {
               placeholder="Password"
             />
             <Button type="submit">Continue</Button>
-            <p className="text-primary">
+            <p className="text-primary whitespace-pre-wrap">
               By continuing, you agree to the{" "}
-              <a href="#" className="font-semibold hover:underline">
-                Terms and conditions
-              </a>{" "}
-              &{" "}
-              <a href="#" className="font-semibold hover:underline">
-                Privacy Policy
+              <a
+                href="https://www.termsfeed.com/live/f2c78792-cfd7-49cb-983d-1f89a46f15f4"
+                className="font-semibold"
+                target="_blank"
+              >
+                <Button className="p-0" type="button" variant="link">
+                  Terms and conditions
+                </Button>
+              </a>
+              {" & "}
+              <a
+                href="https://www.privacypolicygenerator.info/live.php?token=pQ1HLamA4EvdhCl0zZdAxTG1CIj4Mr6y"
+                className="font-semibold"
+                target="_blank"
+              >
+                <Button className="p-0" type="button" variant="link">
+                  Privacy Policy
+                </Button>
               </a>
             </p>
           </form>
         </div>
+
         <div className="grid gap-10">
           <h2>Button</h2>
           <div className="grid gap-5">
@@ -85,8 +100,11 @@ const StyleGuide = () => {
             <Button className="w-full" variant="quaternary">
               Quaternary
             </Button>
+            <Button className="w-full" variant="outline">
+              Outline
+            </Button>
             <Button
-              className="w-full border-none drop-shadow-2xl"
+              className="w-full border-transparent drop-shadow-2xl hover:border-input"
               variant="outline"
             >
               <GoogleSVG className="mr-2 w-4 h-4" /> Login with Google
@@ -119,28 +137,28 @@ const StyleGuide = () => {
 
             <div className="grid grid-flow-col auto-cols-max gap-5 items-center">
               <Button
-                className="border-none drop-shadow-2xl"
+                className="border-transparent drop-shadow-2xl hover:border-input"
                 variant="outline"
                 size="icon"
               >
                 <X className="h-4 w-4" />
               </Button>
               <Button
-                className="border-none drop-shadow-2xl"
+                className="border-transparent drop-shadow-2xl hover:border-input"
                 variant="outline"
                 size="icon"
               >
                 <ImagePlus className="h-4 w-4" />
               </Button>
               <Button
-                className="border-none drop-shadow-2xl"
+                className="border-transparent drop-shadow-2xl hover:border-input"
                 variant="outline"
                 size="icon"
               >
                 <ArrowLeft className="h-4 w-4" />
               </Button>
               <Button
-                className="border-none drop-shadow-2xl"
+                className="border-transparent drop-shadow-2xl hover:border-input"
                 variant="outline"
                 size="icon"
               >
@@ -159,7 +177,7 @@ const StyleGuide = () => {
                 <Settings2 className="h-4 w-4" />
               </Button>
               <Button
-                className="border-none drop-shadow-2xl"
+                className="border-transparent drop-shadow-2xl hover:border-input"
                 variant="outline"
                 size="icon"
               >
@@ -193,6 +211,7 @@ const StyleGuide = () => {
             </div>
           </div>
         </div>
+
         <div className="grid gap-10">
           <h2>Tabs</h2>
           <div className="grid gap-5">
@@ -236,6 +255,71 @@ const StyleGuide = () => {
                 </TabsContent>
               ))}
             </Tabs>
+          </div>
+        </div>
+
+        <div className="grid gap-10">
+          <h2>Typography</h2>
+          <div className="grid gap-5">
+            <article className="prose lg:prose-xl">
+              <h1>h1. Heading</h1>
+              <h2>h2. Heading</h2>
+              <h3>h3. Heading</h3>
+              <h4>h4. Heading</h4>
+              <h5>h5. Heading</h5>
+              <h6>h6. Heading</h6>
+              <p>
+                For years parents have espoused the health benefits of eating
+                garlic bread with cheese to their children, with the food
+                earning such an iconic status in our culture that kids will
+                often dress up as warm, cheesy loaf for Halloween.
+              </p>
+              <p>
+                But a recent study shows that the celebrated appetizer may be
+                linked to a series of rabies cases springing up around the
+                country.
+              </p>
+              <blockquote>
+                "After all," he said, "everyone enjoys a good joke, so it's only
+                fair that they should pay for the privilege."
+              </blockquote>
+              <ul className="list-disc [&>li]:mt-2">
+                <li>1st level of puns: 5 gold coins</li>
+                <li>2nd level of jokes: 10 gold coins</li>
+                <li>3rd level of one-liners : 20 gold coins</li>
+              </ul>
+            </article>
+          </div>
+        </div>
+
+        <div className="grid gap-10">
+          <h2>Card</h2>
+          <div className="grid gap-5">
+            <Card className="rounded-3xl p-5">
+              <div
+                className="h-56 rounded-3xl bg-cover bg-center p-5 flex justify-end"
+                style={{
+                  backgroundImage: `url("https://www.sheknowsgrub.com/wp-content/uploads/2017/12/Duck-Nachos_The-Fatty-Bao_photo-courtesy-Sanjay-Ramchandran_64W8271.jpg")`,
+                  backgroundPosition: "center",
+                  backgroundSize: "cover",
+                  backgroundRepeat: "no-repeat",
+                }}
+              >
+                <Button
+                  className="border-transparent drop-shadow-2xl hover:border-input"
+                  variant="outline"
+                  size="icon"
+                >
+                  <Heart className="h-4 w-4" />
+                </Button>
+              </div>
+              <h3 className="m-0 mt-5">The Fatty Bao Opens in Kolkata</h3>
+              <p className="flex items-center whitespace-pre-wrap text-quinary m-0">
+                <Flame className="w-5 h-5" />
+                120 Kcal{" · "}
+                <Clock className="w-5 h-5" /> 20 Min
+              </p>
+            </Card>
           </div>
         </div>
       </div>

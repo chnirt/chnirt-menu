@@ -17,7 +17,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useCallback } from "react";
 
 const StyleGuide = () => {
-  const handleOnSubmit = useCallback((e:any) => {
+  const handleOnSubmit = useCallback((e: any) => {
     e.preventDefault();
     console.log("hello---");
     return;
@@ -58,13 +58,13 @@ const StyleGuide = () => {
               placeholder="Password"
             />
             <Button type="submit">Continue</Button>
-            <p>
+            <p className="text-primary">
               By continuing, you agree to the{" "}
-              <a href="#" className="text-primary hover:underline">
+              <a href="#" className="font-semibold hover:underline">
                 Terms and conditions
-              </a>
-              &
-              <a href="#" className="text-primary hover:underline">
+              </a>{" "}
+              &{" "}
+              <a href="#" className="font-semibold hover:underline">
                 Privacy Policy
               </a>
             </p>

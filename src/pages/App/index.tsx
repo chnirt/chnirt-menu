@@ -1,16 +1,18 @@
-import { Button } from "@/components/ui/button";
-import { AuthStatus } from "@/context/Auth";
-import useAuth from "@/hooks/useAuth";
 import { useCallback } from "react";
+import { Button } from "@/components/ui/button";
+import useAuth from "@/hooks/useAuth";
 
 const App = () => {
-  const { logout, setStatus } = useAuth();
-  const handleLogout = useCallback(async () => {
-    setStatus(AuthStatus.loading);
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-    logout();
-    setStatus(AuthStatus.loaded);
-  }, [logout, setStatus]);
+  const { logout } = useAuth();
+  const handleLogout = useCallback(() => {
+    const logoutFromAPI = async () => {
+      const data: boolean = await new Promise((resolve) =>
+        setTimeout(() => resolve(true), 1000)
+      );
+      return data;
+    };
+    logout(logoutFromAPI);
+  }, [logout]);
   return (
     <div>
       App

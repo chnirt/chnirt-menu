@@ -19,8 +19,8 @@ export const AuthContext = createContext<AuthContextType>({
   user: null,
   status: AuthStatus.loading,
   isLoggedIn: false,
-  login: () => true,
-  logout: () => true,
+  login: () => new Promise((resolve) => resolve(true)),
+  logout: () => new Promise((resolve) => resolve(true)),
   setStatus: () => {
     return;
   },
@@ -33,40 +33,77 @@ export const AuthProvider: FC<PropsWithChildren> = ({ children }) => {
     useLocalStorage("accessToken");
   const isLoggedIn = useMemo(() => !!user, [user]);
   const login = useCallback(
-    ({ username }: { username: string }) => {
-      // setStatus(AuthStatus.loading);
-      setAccessToken(username);
-      setUser({
-        username,
-      });
-      // setTimeout(() => {
-      //   setStatus(AuthStatus.loaded);
-      // }, 1000);
+    async (
+      callback: () => Promise<{
+        username: string;
+      }>
+    ) => {
+      if (typeof callback === "function") {
+        try {
+          setStatus(AuthStatus.loading);
+          const data = await callback();
+          if (data.username) {
+            setAccessToken(data.username);
+            setUser({
+              username: data.username,
+            });
+          }
+        } catch (error) {
+          console.log(error);
+        } finally {
+          setStatus(AuthStatus.loaded);
+        }
+      }
       return true;
     },
     [setAccessToken]
   );
-  const logout = useCallback(() => {
-    // setStatus(AuthStatus.loading);
-    removeAccessToken();
-    setUser(null);
-    // setTimeout(() => {
-    //   setStatus(AuthStatus.loaded);
-    // }, 1000);
-    return true;
-  }, [removeAccessToken]);
+  const logout = useCallback(
+    async (callback: () => Promise<boolean>) => {
+      if (typeof callback === "function") {
+        try {
+          setStatus(AuthStatus.loading);
+          const data = await callback();
+          if (data) {
+            removeAccessToken();
+            setUser(null);
+          }
+        } catch (error) {
+          console.log(error);
+        } finally {
+          setStatus(AuthStatus.loaded);
+        }
+      }
+      return true;
+    },
+    [removeAccessToken]
+  );
+
+  const fetchProfile = useCallback(async () => {
+    try {
+      if (accessToken) {
+        const username = String(accessToken).split("@")[0];
+        const data: { username: string } = await new Promise((resolve) =>
+          setTimeout(() => resolve({ username }), 1000)
+        );
+        if (data) {
+          setUser({
+            username,
+          });
+        }
+      }
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setStatus(AuthStatus.loaded);
+    }
+  }, [accessToken]);
 
   useEffect(() => {
-    if (accessToken) {
-      String(accessToken).split("@");
-      setUser({
-        username: String(accessToken).split("@")[0],
-      });
+    if (user === null) {
+      void fetchProfile();
     }
-    setTimeout(() => {
-      setStatus(AuthStatus.loaded);
-    }, 1000);
-  }, [accessToken]);
+  }, [user, fetchProfile]);
 
   return (
     <AuthContext.Provider

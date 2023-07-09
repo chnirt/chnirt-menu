@@ -2,7 +2,6 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import useAuth from "@/hooks/useAuth";
-import { AuthStatus } from "@/context/Auth";
 
 type Inputs = {
   username: string;
@@ -20,13 +19,15 @@ const Login = () => {
       password: "admin",
     },
   });
-  const { login, setStatus } = useAuth();
-  const onSubmit: SubmitHandler<Inputs> = async ({ username }) => {
-    setStatus(AuthStatus.loading);
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-    login({ username });
-    setStatus(AuthStatus.loaded);
-    return true;
+  const { login } = useAuth();
+  const onSubmit: SubmitHandler<Inputs> = ({ username }) => {
+    const loginFromAPI = async () => {
+      const data: { username: string } = await new Promise((resolve) =>
+        setTimeout(() => resolve({ username }), 1000)
+      );
+      return data;
+    };
+    login(loginFromAPI);
   };
   // console.log(errors);
   return (

@@ -2,10 +2,10 @@ import { createBrowserRouter } from "react-router-dom";
 import { Loadable, PrivateRoute, PublicRoute } from "./utils";
 
 export const routes = {
-  styleGuide: "/",
+  styleGuide: "/styleGuide",
   login: "/login",
   register: "/register",
-  app: "/app",
+  app: "/",
 };
 
 export const router = createBrowserRouter([
@@ -38,12 +38,10 @@ export const router = createBrowserRouter([
           },
         ],
       },
-      {
-        path: routes.styleGuide,
-        element: (
-          <Loadable {...{ factory: () => import("@/pages/StyleGuide") }} />
-        ),
-      },
     ],
+  },
+  {
+    path: routes.styleGuide,
+    element: <Loadable {...{ factory: () => import("@/pages/StyleGuide") }} />,
   },
 ]);

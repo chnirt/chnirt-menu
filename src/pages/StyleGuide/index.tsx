@@ -19,6 +19,8 @@ import { useCallback } from "react";
 import { Card } from "@/components/ui/card";
 import { Flame } from "lucide-react";
 import { Textarea } from "@/components/ui/textarea";
+import { Link } from "react-router-dom";
+import { routes } from "@/routes";
 
 const StyleGuide = () => {
   const handleOnSubmit = useCallback((e: React.SyntheticEvent) => {
@@ -28,6 +30,12 @@ const StyleGuide = () => {
 
   return (
     <div className="p-5">
+      <Link to={routes.app}>
+        <Button className="p-0" type="button" variant="link">
+          App
+        </Button>
+      </Link>
+
       <h1>StyleGuide</h1>
 
       <div className="mt-10 grid gap-10">
@@ -35,33 +43,40 @@ const StyleGuide = () => {
           <h2>Input Fields</h2>
           <form className="grid gap-5" onSubmit={handleOnSubmit}>
             <Input
+              className="rounded-xl"
               name="username"
               autoComplete="username"
               placeholder="Username"
             />
             <Input
+              className="rounded-xl"
               name="firstName"
               autoComplete="given-name"
               placeholder="First Name"
             />
             <Input
+              className="rounded-xl"
               name="lastName"
               autoComplete="family-name"
               placeholder="Last Name"
             />
             <Input
+              className="rounded-xl"
               name="email"
               autoComplete="email"
               placeholder="Enter Email Address"
             />
             <Input
+              className="rounded-xl"
               type="password"
               autoComplete="current-password"
               name="password"
               placeholder="Password"
             />
-            <Textarea placeholder="Bio" />
-            <Button type="submit">Continue</Button>
+            <Textarea className="rounded-xl" placeholder="Bio" />
+            <Button className="rounded-xl" type="submit">
+              Continue
+            </Button>
             <p className="text-primary whitespace-pre-wrap">
               By continuing, you agree to the{" "}
               <a
@@ -90,28 +105,28 @@ const StyleGuide = () => {
         <div className="grid gap-10">
           <h2>Button</h2>
           <div className="grid gap-5">
-            <Button className="w-full" variant="default">
+            <Button className="w-full rounded-xl" variant="default">
               Primary
             </Button>
-            <Button className="w-full" variant="secondary">
+            <Button className="w-full rounded-xl" variant="secondary">
               Secondary
             </Button>
-            <Button className="w-full" variant="tertiary">
+            <Button className="w-full rounded-xl" variant="tertiary">
               Tertiary
             </Button>
-            <Button className="w-full" variant="quaternary">
+            <Button className="w-full rounded-xl" variant="quaternary">
               Quaternary
             </Button>
-            <Button className="w-full" variant="outline">
+            <Button className="w-full rounded-xl" variant="outline">
               Outline
             </Button>
             <Button
-              className="w-full border-transparent drop-shadow-2xl hover:border-input"
+              className="w-full rounded-xl border-transparent drop-shadow-2xl hover:border-input"
               variant="outline"
             >
               <GoogleSVG className="mr-2 w-4 h-4" /> Login with Google
             </Button>
-            <Button className="w-full bg-[#0056b3] hover:bg-[#0056b3]/80">
+            <Button className="w-full rounded-xl bg-[#0056b3] hover:bg-[#0056b3]/80">
               <svg
                 className="mr-2 h-4 w-4"
                 viewBox="0 0 24 24"
@@ -139,28 +154,28 @@ const StyleGuide = () => {
 
             <div className="grid grid-flow-col auto-cols-max gap-5 items-center">
               <Button
-                className="border-transparent drop-shadow-2xl hover:border-input"
+                className="rounded-xl border-transparent drop-shadow-2xl hover:border-input"
                 variant="outline"
                 size="icon"
               >
                 <X className="h-4 w-4" />
               </Button>
               <Button
-                className="border-transparent drop-shadow-2xl hover:border-input"
+                className="rounded-xl border-transparent drop-shadow-2xl hover:border-input"
                 variant="outline"
                 size="icon"
               >
                 <ImagePlus className="h-4 w-4" />
               </Button>
               <Button
-                className="border-transparent drop-shadow-2xl hover:border-input"
+                className="rounded-xl border-transparent drop-shadow-2xl hover:border-input"
                 variant="outline"
                 size="icon"
               >
                 <ArrowLeft className="h-4 w-4" />
               </Button>
               <Button
-                className="border-transparent drop-shadow-2xl hover:border-input"
+                className="rounded-xl border-transparent drop-shadow-2xl hover:border-input"
                 variant="outline"
                 size="icon"
               >
@@ -169,17 +184,17 @@ const StyleGuide = () => {
             </div>
 
             <div className="grid grid-flow-col auto-cols-max gap-5 items-center">
-              <Button variant="quaternary" size="icon">
+              <Button className="rounded-xl" variant="quaternary" size="icon">
                 <ArrowRight className="h-4 w-4" />
               </Button>
               <Button className="rounded-full" variant="default" size="icon">
                 <Pause className="h-4 w-4" />
               </Button>
-              <Button className="w-12 h-12 rounded-xl" variant="secondary">
+              <Button className="rounded-xl w-12 h-12" variant="secondary">
                 <Settings2 className="h-4 w-4" />
               </Button>
               <Button
-                className="border-transparent drop-shadow-2xl hover:border-input"
+                className="rounded-xl border-transparent drop-shadow-2xl hover:border-input"
                 variant="outline"
                 size="icon"
               >
@@ -187,13 +202,13 @@ const StyleGuide = () => {
               </Button>
             </div>
             <div className="grid grid-flow-col auto-cols-max gap-5 items-center">
-              <Button className="w-8 h-8 px-2" variant="default">
+              <Button className="rounded-xl w-8 h-8 px-2" variant="default">
                 <MessageSquare className="h-4 w-4" />
               </Button>
-              <Button className="w-8 h-8 px-2" variant="default">
+              <Button className="rounded-xl w-8 h-8 px-2" variant="default">
                 <Phone className="h-4 w-4" />
               </Button>
-              <Button className="w-6 h-6 px-1.5" variant="default">
+              <Button className="rounded-lg w-6 h-6 px-1" variant="default">
                 <ArrowRight className="h-4 w-4" />
               </Button>
             </div>

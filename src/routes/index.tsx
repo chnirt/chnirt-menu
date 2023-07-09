@@ -5,6 +5,7 @@ export const routes = {
   styleGuide: "/styleGuide",
   login: "/login",
   register: "/register",
+  forgotPassword: "/forgotPassword",
   app: "/",
 };
 
@@ -34,6 +35,14 @@ export const router = createBrowserRouter([
             path: routes.register,
             element: (
               <Loadable {...{ factory: () => import("@/pages/Register") }} />
+            ),
+          },
+          {
+            path: routes.forgotPassword,
+            element: (
+              <Loadable
+                {...{ factory: () => import("@/pages/ForgotPassword") }}
+              />
             ),
           },
         ],

@@ -18,6 +18,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useCallback } from "react";
 import { Card } from "@/components/ui/card";
 import { Flame } from "lucide-react";
+import { Textarea } from "@/components/ui/textarea";
 
 const StyleGuide = () => {
   const handleOnSubmit = useCallback((e: React.SyntheticEvent) => {
@@ -59,6 +60,7 @@ const StyleGuide = () => {
               name="password"
               placeholder="Password"
             />
+            <Textarea placeholder="Bio" />
             <Button type="submit">Continue</Button>
             <p className="text-primary whitespace-pre-wrap">
               By continuing, you agree to the{" "}
